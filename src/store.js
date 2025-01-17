@@ -10,12 +10,21 @@ const quizSlice = createSlice({
     currentQuestionIndex: 0,
     score: 0,
   },
-  reducers: {
+  reducers: {  
+    answerQuestion: (state, action) => {
+      if (state.questions[state.currentQuestionIndex].answer === action.payload) {
+        state.score += 1;
+      }
+      state.currentQuestionIndex += 1;
+    }
+    
 
   },
 });
 
 // Export actions
+export const { answerQuestion, resetQuiz } = quizSlice.actions;
+
 
 // Create and export the store
 const store = configureStore({
